@@ -1,0 +1,263 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>For You ❤️</title>
+
+  <!-- Handwriting font -->
+  <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Patrick Hand', cursive;
+      background: #fff7f9;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 40px 12px;
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+
+    /* Floating hearts */
+    .heart {
+      position: absolute;
+      color: #ff6b81;
+      animation: float 7s infinite ease-in;
+      opacity: 0.6;
+      pointer-events: none;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(110vh) scale(1); }
+      100% { transform: translateY(-10vh) scale(1.5); }
+    }
+
+    .box {
+      background: white;
+      width: 100%;
+      max-width: 600px;
+      padding: 28px 22px;
+      border-radius: 22px;
+      box-shadow: 0 12px 30px rgba(0,0,0,.12);
+      text-align: center;
+      z-index: 1;
+    }
+
+    h1 { font-size: 42px; margin-bottom: 8px; }
+
+    input {
+      width: 100%;
+      max-width: 320px;
+      padding: 14px;
+      font-size: 20px;
+      border-radius: 14px;
+      border: 1px solid #ccc;
+      margin-top: 10px;
+      font-family: inherit;
+    }
+
+    /* Envelope button */
+    .envelope-wrap {
+      margin-top: 14px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .envelope-btn {
+      width: 110px;
+      height: 80px;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      position: relative;
+      font-family: inherit;
+      outline: none;
+    }
+
+    /* Envelope body */
+    .env {
+      position: absolute;
+      inset: 0;
+      background: #ff6b81;
+      border-radius: 14px;
+      box-shadow: 0 10px 20px rgba(0,0,0,.12);
+      overflow: hidden;
+    }
+
+    /* Envelope flap */
+    .flap {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      height: 0;
+      border-left: 55px solid transparent;
+      border-right: 55px solid transparent;
+      border-top: 45px solid rgba(255,255,255,0.85);
+      transform-origin: top;
+      transition: transform 0.6s ease;
+    }
+
+    /* Letter inside envelope */
+    .paper {
+      position: absolute;
+      left: 10px;
+      right: 10px;
+      bottom: 8px;
+      height: 58px;
+      background: #fff;
+      border-radius: 10px;
+      transform: translateY(26px);
+      transition: transform 0.7s ease;
+    }
+
+    /* Cute label */
+    .tap-text {
+      margin-top: 10px;
+      font-size: 18px;
+      color: #ff6b81;
+    }
+
+    /* Open animation */
+    .envelope-btn.open .flap {
+      transform: rotateX(180deg);
+    }
+
+    .envelope-btn.open .paper {
+      transform: translateY(-2px);
+    }
+
+    #error {
+      margin-top: 10px;
+      color: #ff6b81;
+      font-size: 18px;
+      min-height: 24px;
+    }
+
+    /* Fade-in letter */
+    #letter {
+      display: none;
+      margin-top: 30px;
+      text-align: left;
+      line-height: 1.8;
+      font-size: 22px;
+      opacity: 0;
+      transform: translateY(15px);
+      transition: opacity 2s ease, transform 2s ease;
+    }
+
+    #letter.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    #letter p { margin-bottom: 16px; }
+
+    @media (max-width: 480px) {
+      h1 { font-size: 36px; }
+      #letter { font-size: 20px; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Hearts -->
+  <span class="heart" style="left:5%;">💗</span>
+  <span class="heart" style="left:20%;">💖</span>
+  <span class="heart" style="left:40%;">💘</span>
+  <span class="heart" style="left:60%;">💞</span>
+  <span class="heart" style="left:80%;">💕</span>
+  <span class="heart" style="left:95%;">💓</span>
+
+  <div class="box">
+    <h1>💌</h1>
+    <p>Type our secret, then tap the envelope ✉️</p>
+
+    <input id="password" type="password" placeholder="our secret" autocomplete="off">
+
+    <div class="envelope-wrap">
+      <button class="envelope-btn" id="envelope" aria-label="Open love letter">
+        <div class="env"></div>
+        <div class="flap"></div>
+        <div class="paper"></div>
+      </button>
+    </div>
+
+    <div class="tap-text">Tip: press Enter to unlock</div>
+
+    <p id="error"></p>
+
+    <div id="letter">
+      <p>Hi Aby 💕</p>
+
+<p>
+  Sup, how you doing? I wanted to send you a love letter but USPS scares me and I kinda forgot your address. So, I made this little page just for you.
+  It’s tiny, a little silly, and very handmade,and probably the best I can do with the amout of brain I have left.
+This e-letter is sent to ask you the following question:
+</p>
+<p>
+I love you more than words ✍️,<br>
+more than distance ✈️,<br>
+more than chemeen 🦐, in almost every instance.<br>
+My dear Aby, will you be my Valentine? 💞
+ 
+</p>
+
+<p>
+ You can text me the reply, coding sucks. 
+</p>
+
+<p>
+  Yours truly,<br>
+  Shuttu 💖
+</p>
+    </div>
+  </div>
+
+  <script>
+    const SECRET = "porotta&beef";
+
+    const passwordInput = document.getElementById("password");
+    const envelopeBtn = document.getElementById("envelope");
+    const error = document.getElementById("error");
+    const letter = document.getElementById("letter");
+
+    function unlock() {
+      const input = passwordInput.value;
+
+      if (input === SECRET) {
+        // envelope animation
+        envelopeBtn.classList.add("open");
+
+        // show letter with fade-in
+        letter.style.display = "block";
+        setTimeout(() => letter.classList.add("show"), 80);
+
+        error.textContent = "";
+      } else {
+        envelopeBtn.classList.remove("open");
+        letter.classList.remove("show");
+        letter.style.display = "none";
+        error.textContent = "Wrong secret 💔";
+      }
+    }
+
+    // Click envelope to unlock
+    envelopeBtn.addEventListener("click", unlock);
+
+    // Press Enter to unlock
+    passwordInput.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") unlock();
+    });
+
+    // Randomize hearts
+    document.querySelectorAll('.heart').forEach(h => {
+      h.style.animationDelay = Math.random() * 6 + "s";
+      h.style.fontSize = (16 + Math.random() * 20) + "px";
+    });
+  </script>
+
+</body>
+</html>
