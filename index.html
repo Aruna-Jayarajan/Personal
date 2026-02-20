@@ -11,7 +11,6 @@
 :root{
   --bg0:#050814;
   --bg1:#070b1b;
-  --glow:#2f7bff;
   --text:rgba(255,255,255,0.92);
   --muted:rgba(255,255,255,0.65);
   --border:rgba(255,255,255,0.15);
@@ -44,7 +43,8 @@ body{
   background-image:
     radial-gradient(1px 1px at 20px 30px, white, transparent 60%),
     radial-gradient(1px 1px at 120px 90px, white, transparent 60%),
-    radial-gradient(1px 1px at 200px 60px, white, transparent 60%);
+    radial-gradient(1px 1px at 200px 60px, white, transparent 60%),
+    radial-gradient(1px 1px at 300px 120px, white, transparent 60%);
   background-size: 240px 180px;
   animation: drift 120s linear infinite;
   opacity:.8;
@@ -68,7 +68,16 @@ body{
   text-align:center;
 }
 
-h1{font-size:42px;margin:0 0 8px;}
+h1{
+  font-size:42px;
+  margin:0 0 8px;
+}
+
+p.sub{
+  color:var(--muted);
+  margin:0 0 12px;
+  font-size:18px;
+}
 
 input{
   width:100%;
@@ -80,6 +89,7 @@ input{
   font-family:inherit;
   background:rgba(0,0,0,0.3);
   color:white;
+  outline:none;
 }
 
 .envelope-wrap{
@@ -163,7 +173,7 @@ input{
 
 <div class="box">
   <h1>✉️🌙</h1>
-  <p>Type the secret, then tap the envelope.</p>
+  <p class="sub">Enter the password</p>
 
   <input id="password" type="password" placeholder="our secret">
 
@@ -178,24 +188,23 @@ input{
   <p id="error"></p>
 
   <div id="letter">
+
     <p>Hi Aby 🌙</p>
 
     <p>
-      I don’t need an app or archive or fancy features.
-      I just wanted one quiet place in the universe
-      where I could leave this for you.
+      I don't think I'm super creative anymore, but here's my love letter. or e-loveletter.
+    </p>
+    <p>
+     So, I know we talked for an hour today, and I really enjoyed that. I wish we can have a farm of our own one day, with goats and sheeps and cows and no ponds cause you might put the
+      cow in the pond. What else, I think I am thinking out loud or typing out loud now, this is just a very complicated way to text huh.
+      
     </p>
 
     <p>
-      No matter the distance,
-      no matter the time,
-      you’ll always be my favorite constellation.
-    </p>
-
-    <p>
-      Yours always,<br>
+      Yours,<br>
       Shuttu 💙
     </p>
+
   </div>
 </div>
 
@@ -229,4 +238,3 @@ passwordInput.addEventListener("keydown", e=>{
 
 </body>
 </html>
-
