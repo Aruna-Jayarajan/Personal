@@ -1,691 +1,232 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title>Nightly Love Letter</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8">
+<title>For You 🌙</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- Handwriting font -->
-  <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
 
-  <style>
-    :root{
-      --bg0:#050814;
-      --bg1:#070b1b;
-      --glow:#2f7bff;
-      --glow2:#7aa7ff;
-      --card: rgba(255,255,255,0.06);
-      --card2: rgba(255,255,255,0.09);
-      --text: rgba(255,255,255,0.92);
-      --muted: rgba(255,255,255,0.68);
-      --border: rgba(255,255,255,0.14);
-      --shadow: 0 18px 60px rgba(0,0,0,0.55);
-      --radius: 22px;
-    }
+<style>
+:root{
+  --bg0:#050814;
+  --bg1:#070b1b;
+  --glow:#2f7bff;
+  --text:rgba(255,255,255,0.92);
+  --muted:rgba(255,255,255,0.65);
+  --border:rgba(255,255,255,0.15);
+}
 
-    *{box-sizing:border-box}
-    body {
-      font-family: 'Patrick Hand', cursive;
-      margin:0;
-      min-height: 100vh;
-      color: var(--text);
-      display: flex;
-      justify-content: center;
-      align-items: flex-start;
-      padding: 38px 12px 70px;
-      overflow-x: hidden;
+*{box-sizing:border-box}
 
-      /* Black + blue space */
-      background:
-        radial-gradient(900px 700px at 18% 8%, rgba(47,123,255,0.18), transparent 60%),
-        radial-gradient(950px 760px at 85% 18%, rgba(122,167,255,0.14), transparent 62%),
-        radial-gradient(1100px 900px at 50% 90%, rgba(255,255,255,0.06), transparent 60%),
-        linear-gradient(180deg, var(--bg0), var(--bg1));
-    }
+body{
+  margin:0;
+  min-height:100vh;
+  font-family:'Patrick Hand', cursive;
+  color:var(--text);
+  display:flex;
+  justify-content:center;
+  align-items:flex-start;
+  padding:40px 12px;
+  overflow:hidden;
 
-    /* Star layers */
-    .stars, .stars2, .stars3 {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 0;
-      background-repeat: repeat;
-      opacity: .85;
-      animation: drift 90s linear infinite;
-      filter: drop-shadow(0 0 10px rgba(47,123,255,0.25));
-    }
+  background:
+    radial-gradient(900px 700px at 20% 10%, rgba(47,123,255,0.18), transparent 60%),
+    radial-gradient(950px 760px at 85% 18%, rgba(122,167,255,0.14), transparent 62%),
+    linear-gradient(180deg, var(--bg0), var(--bg1));
+}
 
-    /* tiny stars */
-    .stars{
-      background-image:
-        radial-gradient(1px 1px at 12px 18px, rgba(255,255,255,.9), transparent 60%),
-        radial-gradient(1px 1px at 72px 54px, rgba(255,255,255,.8), transparent 60%),
-        radial-gradient(1px 1px at 42px 92px, rgba(255,255,255,.7), transparent 60%),
-        radial-gradient(1px 1px at 98px 14px, rgba(255,255,255,.85), transparent 60%),
-        radial-gradient(1px 1px at 128px 76px, rgba(255,255,255,.75), transparent 60%);
-      background-size: 160px 120px;
-      animation-duration: 120s;
-    }
-    /* medium stars */
-    .stars2{
-      opacity: .55;
-      background-image:
-        radial-gradient(1.5px 1.5px at 30px 20px, rgba(122,167,255,.9), transparent 60%),
-        radial-gradient(1.5px 1.5px at 80px 80px, rgba(255,255,255,.8), transparent 60%),
-        radial-gradient(1.5px 1.5px at 140px 50px, rgba(122,167,255,.7), transparent 60%),
-        radial-gradient(1.5px 1.5px at 110px 10px, rgba(255,255,255,.75), transparent 60%);
-      background-size: 180px 140px;
-      animation-duration: 160s;
-      animation-direction: reverse;
-    }
-    /* twinkles */
-    .stars3{
-      opacity: .5;
-      background-image:
-        radial-gradient(2px 2px at 40px 40px, rgba(255,255,255,.9), transparent 60%),
-        radial-gradient(2px 2px at 120px 90px, rgba(47,123,255,.7), transparent 60%),
-        radial-gradient(2px 2px at 170px 30px, rgba(255,255,255,.8), transparent 60%);
-      background-size: 220px 160px;
-      animation: twinkle 3.8s ease-in-out infinite;
-    }
+/* Stars */
+.stars{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  background-image:
+    radial-gradient(1px 1px at 20px 30px, white, transparent 60%),
+    radial-gradient(1px 1px at 120px 90px, white, transparent 60%),
+    radial-gradient(1px 1px at 200px 60px, white, transparent 60%);
+  background-size: 240px 180px;
+  animation: drift 120s linear infinite;
+  opacity:.8;
+}
 
-    @keyframes drift{
-      from{ transform: translateY(0px); }
-      to{ transform: translateY(-200px); }
-    }
-    @keyframes twinkle{
-      0%,100%{ opacity: .35; }
-      50%{ opacity: .75; }
-    }
+@keyframes drift{
+  from{transform:translateY(0);}
+  to{transform:translateY(-200px);}
+}
 
-    .box {
-      position: relative;
-      z-index: 1;
-      width: 100%;
-      max-width: 760px;
-      padding: 28px 22px;
-      border-radius: var(--radius);
-      text-align: center;
-      background: linear-gradient(180deg, var(--card2), rgba(255,255,255,0.03));
-      border: 1px solid var(--border);
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(6px);
-    }
+.box{
+  position:relative;
+  z-index:1;
+  max-width:600px;
+  width:100%;
+  padding:30px 22px;
+  border-radius:20px;
+  background:rgba(255,255,255,0.06);
+  border:1px solid var(--border);
+  backdrop-filter:blur(6px);
+  text-align:center;
+}
 
-    h1 { font-size: 42px; margin: 0 0 8px; letter-spacing: .2px; }
-    .sub { color: var(--muted); font-size: 18px; margin: 0 0 10px; }
+h1{font-size:42px;margin:0 0 8px;}
 
-    input, textarea {
-      width: 100%;
-      max-width: 560px;
-      padding: 14px;
-      font-size: 20px;
-      border-radius: 14px;
-      border: 1px solid var(--border);
-      margin-top: 10px;
-      font-family: inherit;
-      background: rgba(0,0,0,0.28);
-      color: var(--text);
-      outline: none;
-    }
-    input::placeholder, textarea::placeholder{ color: rgba(255,255,255,0.55); }
+input{
+  width:100%;
+  padding:14px;
+  font-size:20px;
+  border-radius:14px;
+  border:1px solid var(--border);
+  margin-top:10px;
+  font-family:inherit;
+  background:rgba(0,0,0,0.3);
+  color:white;
+}
 
-    textarea {
-      min-height: 190px;
-      resize: vertical;
-      line-height: 1.6;
-    }
+.envelope-wrap{
+  margin-top:16px;
+  display:flex;
+  justify-content:center;
+}
 
-    /* Envelope button */
-    .envelope-wrap {
-      margin-top: 14px;
-      display: flex;
-      justify-content: center;
-    }
+.envelope-btn{
+  width:120px;
+  height:85px;
+  border:none;
+  background:transparent;
+  cursor:pointer;
+  position:relative;
+}
 
-    .envelope-btn {
-      width: 120px;
-      height: 86px;
-      border: none;
-      background: transparent;
-      cursor: pointer;
-      position: relative;
-      font-family: inherit;
-      outline: none;
-      filter: drop-shadow(0 10px 18px rgba(0,0,0,.35));
-    }
+.env{
+  position:absolute;
+  inset:0;
+  background:linear-gradient(180deg, #2f7bff, #1b4ed8);
+  border-radius:14px;
+}
 
-    /* Envelope body */
-    .env {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, rgba(47,123,255,0.95), rgba(47,123,255,0.55));
-      border-radius: 16px;
-      border: 1px solid rgba(255,255,255,0.14);
-      overflow: hidden;
-    }
+.flap{
+  position:absolute;
+  left:0;
+  right:0;
+  top:0;
+  border-left:60px solid transparent;
+  border-right:60px solid transparent;
+  border-top:48px solid rgba(255,255,255,0.85);
+  transform-origin:top;
+  transition:transform .6s ease;
+}
 
-    /* subtle shine line */
-    .env::after{
-      content:"";
-      position:absolute;
-      inset:0;
-      background: radial-gradient(300px 120px at 20% 10%, rgba(255,255,255,0.20), transparent 60%);
-      opacity:.75;
-    }
+.paper{
+  position:absolute;
+  left:10px;
+  right:10px;
+  bottom:8px;
+  height:60px;
+  background:white;
+  border-radius:10px;
+  transform:translateY(28px);
+  transition:transform .7s ease;
+}
 
-    /* Envelope flap */
-    .flap {
-      position: absolute;
-      left: 0;
-      right: 0;
-      top: 2px;
-      height: 0;
-      border-left: 60px solid transparent;
-      border-right: 60px solid transparent;
-      border-top: 48px solid rgba(255,255,255,0.86);
-      transform-origin: top;
-      transition: transform 0.6s ease;
-      filter: drop-shadow(0 10px 10px rgba(0,0,0,.18));
-    }
+.envelope-btn.open .flap{transform:rotateX(180deg);}
+.envelope-btn.open .paper{transform:translateY(-2px);}
 
-    /* Letter inside envelope */
-    .paper {
-      position: absolute;
-      left: 10px;
-      right: 10px;
-      bottom: 9px;
-      height: 62px;
-      background: rgba(255,255,255,0.92);
-      border-radius: 12px;
-      transform: translateY(28px);
-      transition: transform 0.7s ease;
-      border: 1px solid rgba(0,0,0,0.08);
-    }
+#error{
+  margin-top:10px;
+  color:#7aa7ff;
+  min-height:24px;
+  font-size:18px;
+}
 
-    .tap-text {
-      margin-top: 10px;
-      font-size: 18px;
-      color: rgba(122,167,255,0.95);
-    }
+#letter{
+  display:none;
+  margin-top:24px;
+  text-align:left;
+  line-height:1.8;
+  font-size:22px;
+  opacity:0;
+  transform:translateY(15px);
+  transition:opacity 1.5s ease, transform 1.5s ease;
+}
 
-    /* Open animation */
-    .envelope-btn.open .flap { transform: rotateX(180deg); }
-    .envelope-btn.open .paper { transform: translateY(-2px); }
+#letter.show{
+  opacity:1;
+  transform:translateY(0);
+}
 
-    #error {
-      margin-top: 10px;
-      color: rgba(122,167,255,0.95);
-      font-size: 18px;
-      min-height: 24px;
-    }
-
-    /* Fade-in content area */
-    #content {
-      display: none;
-      margin-top: 24px;
-      text-align: left;
-      opacity: 0;
-      transform: translateY(15px);
-      transition: opacity 1.4s ease, transform 1.4s ease;
-    }
-    #content.show { opacity: 1; transform: translateY(0); }
-
-    .divider {
-      height: 1px;
-      background: rgba(255,255,255,0.12);
-      margin: 18px 0;
-    }
-
-    .row {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      justify-content: flex-start;
-      align-items: center;
-      margin-top: 10px;
-    }
-
-    .btn {
-      border: 1px solid rgba(122,167,255,0.55);
-      background: rgba(255,255,255,0.06);
-      color: var(--text);
-      border-radius: 14px;
-      padding: 10px 14px;
-      font-size: 18px;
-      cursor: pointer;
-      font-family: inherit;
-      transition: transform .08s ease, background .15s ease, border-color .15s ease;
-    }
-    .btn:hover { background: rgba(255,255,255,0.09); border-color: rgba(122,167,255,0.75); }
-    .btn:active { transform: translateY(1px); }
-
-    .btn.primary {
-      background: linear-gradient(90deg, rgba(47,123,255,0.45), rgba(122,167,255,0.25));
-      border-color: rgba(255,255,255,0.18);
-    }
-
-    .btn.danger {
-      border-color: rgba(255,255,255,0.18);
-      background: rgba(255,255,255,0.03);
-    }
-
-    .mini {
-      font-size: 16px;
-      padding: 8px 12px;
-    }
-
-    .muted {
-      color: var(--muted);
-      font-size: 18px;
-      margin-top: 6px;
-    }
-
-    .archive {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 10px;
-      margin-top: 10px;
-    }
-
-    .item {
-      border: 1px solid rgba(255,255,255,0.14);
-      background: rgba(0,0,0,0.22);
-      border-radius: 16px;
-      padding: 12px 14px;
-      cursor: pointer;
-      transition: background .15s ease, transform .08s ease, border-color .15s ease;
-    }
-    .item:hover { background: rgba(255,255,255,0.06); border-color: rgba(122,167,255,0.35); }
-    .item:active { transform: translateY(1px); }
-
-    .itemTop {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .pill {
-      border: 1px solid rgba(255,255,255,0.14);
-      border-radius: 999px;
-      padding: 4px 10px;
-      font-size: 16px;
-      color: rgba(255,255,255,0.76);
-      background: rgba(255,255,255,0.04);
-      white-space: nowrap;
-    }
-
-    .snippet{
-      margin-top: 8px;
-      color: rgba(255,255,255,0.70);
-      font-size: 17px;
-      line-height: 1.35;
-    }
-
-    #openArea{
-      background: rgba(0,0,0,0.20);
-      border: 1px solid rgba(255,255,255,0.12);
-      border-radius: 16px;
-      padding: 14px 14px;
-      margin-top: 12px;
-    }
-
-    #openMeta{
-      color: rgba(122,167,255,0.95);
-      font-size: 18px;
-      margin: 0 0 8px;
-    }
-
-    #openText{
-      white-space: pre-wrap;
-      line-height: 1.7;
-      font-size: 20px;
-      margin: 0;
-    }
-
-    @media (max-width: 480px) {
-      h1 { font-size: 36px; }
-      input, textarea { font-size: 19px; }
-      #openText { font-size: 19px; }
-    }
-  </style>
+</style>
 </head>
 
 <body>
-  <!-- Star layers -->
-  <div class="stars" aria-hidden="true"></div>
-  <div class="stars2" aria-hidden="true"></div>
-  <div class="stars3" aria-hidden="true"></div>
 
-  <div class="box">
-    <h1>✉️🌙</h1>
-    <p class="sub">Type the secret, then tap the envelope to unlock tonight’s letters.</p>
+<div class="stars"></div>
 
-    <input id="password" type="password" placeholder="our secret" autocomplete="off">
+<div class="box">
+  <h1>✉️🌙</h1>
+  <p>Type the secret, then tap the envelope.</p>
 
-    <div class="envelope-wrap">
-      <button class="envelope-btn" id="envelope" aria-label="Open love letter">
-        <div class="env"></div>
-        <div class="flap"></div>
-        <div class="paper"></div>
-      </button>
-    </div>
+  <input id="password" type="password" placeholder="our secret">
 
-    <div class="tap-text">Press Enter to unlock</div>
-    <p id="error"></p>
-
-    <!-- UNLOCKED CONTENT -->
-    <div id="content">
-      <div class="divider"></div>
-
-      <div class="muted" id="todayLabel"></div>
-
-      <label for="letterText" class="muted" style="display:block; margin-top:10px;">Write tonight’s letter</label>
-      <textarea id="letterText" placeholder="Write what you want him to read before sleep…"></textarea>
-
-      <div class="row">
-        <button class="btn primary" id="saveBtn">Save tonight’s letter</button>
-        <button class="btn" id="clearBtn">Clear</button>
-        <button class="btn" id="copyBtn">Copy</button>
-      </div>
-
-      <div class="divider"></div>
-
-      <div class="row">
-        <button class="btn mini" id="exportBtn">Export</button>
-        <label class="btn mini" for="importFile" style="cursor:pointer;">Import</label>
-        <input id="importFile" type="file" accept="application/json" hidden>
-        <button class="btn mini danger" id="wipeBtn" title="Deletes all saved letters on this device">Delete all</button>
-      </div>
-
-      <div class="divider"></div>
-
-      <label for="search" class="muted" style="display:block;">Archive</label>
-      <input id="search" type="text" placeholder="search your letters…">
-
-      <div class="archive" id="archive"></div>
-
-      <div id="openArea">
-        <p id="openMeta">Open a letter from the archive ✨</p>
-        <p id="openText">—</p>
-        <div class="row" style="margin-top:10px;">
-          <button class="btn mini danger" id="deleteOneBtn" disabled>Delete this letter</button>
-        </div>
-      </div>
-
-      <p class="muted" style="margin-top:14px;">
-        Tip: letters save on <b>this device</b>. To move them to his phone/laptop, Export → send the file → Import.
-      </p>
-    </div>
+  <div class="envelope-wrap">
+    <button class="envelope-btn" id="envelope">
+      <div class="env"></div>
+      <div class="flap"></div>
+      <div class="paper"></div>
+    </button>
   </div>
 
-  <script>
-    // --- CHANGE THIS ---
-    const SECRET = "porotta&beef"; // your password
+  <p id="error"></p>
 
-    // --- Elements ---
-    const passwordInput = document.getElementById("password");
-    const envelopeBtn = document.getElementById("envelope");
-    const error = document.getElementById("error");
-    const content = document.getElementById("content");
+  <div id="letter">
+    <p>Hi Aby 🌙</p>
 
-    const todayLabel = document.getElementById("todayLabel");
-    const letterText = document.getElementById("letterText");
-    const saveBtn = document.getElementById("saveBtn");
-    const clearBtn = document.getElementById("clearBtn");
-    const copyBtn = document.getElementById("copyBtn");
+    <p>
+      I don’t need an app or archive or fancy features.
+      I just wanted one quiet place in the universe
+      where I could leave this for you.
+    </p>
 
-    const exportBtn = document.getElementById("exportBtn");
-    const importFile = document.getElementById("importFile");
-    const wipeBtn = document.getElementById("wipeBtn");
+    <p>
+      No matter the distance,
+      no matter the time,
+      you’ll always be my favorite constellation.
+    </p>
 
-    const searchInput = document.getElementById("search");
-    const archive = document.getElementById("archive");
+    <p>
+      Yours always,<br>
+      Shuttu 💙
+    </p>
+  </div>
+</div>
 
-    const openMeta = document.getElementById("openMeta");
-    const openText = document.getElementById("openText");
-    const deleteOneBtn = document.getElementById("deleteOneBtn");
+<script>
+const SECRET = "porotta&beef";
 
-    // --- Storage ---
-    const KEY = "nightlyLoveLetters_v1";
-    let letters = loadLetters();
-    let selectedId = null;
+const passwordInput = document.getElementById("password");
+const envelopeBtn = document.getElementById("envelope");
+const error = document.getElementById("error");
+const letter = document.getElementById("letter");
 
-    function formatDate(d){
-      return d.toLocaleDateString(undefined, { weekday:"short", year:"numeric", month:"short", day:"numeric" });
-    }
-    function nowISO(){ return new Date().toISOString(); }
+function unlock(){
+  if(passwordInput.value === SECRET){
+    envelopeBtn.classList.add("open");
+    letter.style.display="block";
+    setTimeout(()=>letter.classList.add("show"),80);
+    error.textContent="";
+  } else {
+    envelopeBtn.classList.remove("open");
+    letter.classList.remove("show");
+    letter.style.display="none";
+    error.textContent="Wrong secret ✖︎";
+  }
+}
 
-    function loadLetters(){
-      try { return JSON.parse(localStorage.getItem(KEY) || "[]"); }
-      catch { return []; }
-    }
-    function saveLetters(){
-      localStorage.setItem(KEY, JSON.stringify(letters));
-    }
+envelopeBtn.addEventListener("click", unlock);
+passwordInput.addEventListener("keydown", e=>{
+  if(e.key==="Enter") unlock();
+});
+</script>
 
-    function snippet(text){
-      const s = (text || "").trim().replace(/\s+/g, " ");
-      return s.length > 120 ? s.slice(0,120) + "…" : (s || "—");
-    }
-
-    // --- Unlock ---
-    function unlock() {
-      const input = passwordInput.value;
-
-      if (input === SECRET) {
-        envelopeBtn.classList.add("open");
-        content.style.display = "block";
-        requestAnimationFrame(() => content.classList.add("show"));
-        error.textContent = "";
-
-        // init
-        todayLabel.textContent = "Tonight: " + formatDate(new Date());
-        renderArchive();
-        if (letters.length) openLetter(letters[letters.length - 1].id);
-      } else {
-        envelopeBtn.classList.remove("open");
-        content.classList.remove("show");
-        content.style.display = "none";
-        error.textContent = "Wrong secret ✖︎";
-      }
-    }
-
-    envelopeBtn.addEventListener("click", unlock);
-    passwordInput.addEventListener("keydown", (e) => {
-      if (e.key === "Enter") unlock();
-    });
-
-    // --- Letters ---
-    function saveTonight(){
-      const text = letterText.value.trim();
-      if(!text){
-        openMeta.textContent = "Write something first ✍️";
-        openText.textContent = "—";
-        return;
-      }
-
-      const letter = {
-        id: crypto.randomUUID ? crypto.randomUUID() : String(Math.random()).slice(2),
-        createdAt: nowISO(),
-        dateLabel: formatDate(new Date()),
-        text
-      };
-
-      letters.push(letter);
-      saveLetters();
-      renderArchive();
-      openLetter(letter.id);
-
-      letterText.value = "";
-      letterText.focus();
-    }
-
-    function clearBox(){
-      letterText.value = "";
-      letterText.focus();
-    }
-
-    async function copyDraft(){
-      const text = letterText.value.trim();
-      if(!text) return;
-      try { await navigator.clipboard.writeText(text); }
-      catch {}
-    }
-
-    function renderArchive(){
-      const q = searchInput.value.trim().toLowerCase();
-      archive.innerHTML = "";
-
-      const filtered = letters
-        .slice()
-        .sort((a,b) => (b.createdAt || "").localeCompare(a.createdAt || ""))
-        .filter(l => {
-          if(!q) return true;
-          return (l.dateLabel + " " + l.text).toLowerCase().includes(q);
-        });
-
-      if(!filtered.length){
-        const empty = document.createElement("div");
-        empty.className = "muted";
-        empty.textContent = q ? "No matches." : "No letters yet. Write the first one 🌙";
-        archive.appendChild(empty);
-        return;
-      }
-
-      filtered.forEach(l => {
-        const div = document.createElement("div");
-        div.className = "item";
-        div.tabIndex = 0;
-
-        const top = document.createElement("div");
-        top.className = "itemTop";
-
-        const date = document.createElement("div");
-        date.textContent = l.dateLabel;
-
-        const pill = document.createElement("div");
-        pill.className = "pill";
-        pill.textContent = "saved";
-
-        top.appendChild(date);
-        top.appendChild(pill);
-
-        const snip = document.createElement("div");
-        snip.className = "snippet";
-        snip.textContent = snippet(l.text);
-
-        div.appendChild(top);
-        div.appendChild(snip);
-
-        const open = () => openLetter(l.id);
-        div.addEventListener("click", open);
-        div.addEventListener("keydown", (e) => {
-          if(e.key === "Enter" || e.key === " ") { e.preventDefault(); open(); }
-        });
-
-        archive.appendChild(div);
-      });
-    }
-
-    function openLetter(id){
-      const l = letters.find(x => x.id === id);
-      if(!l) return;
-
-      selectedId = id;
-      deleteOneBtn.disabled = false;
-      openMeta.textContent = "🌙 " + l.dateLabel;
-      openText.textContent = "My love,\n\n" + (l.text || "").trim() + "\n";
-    }
-
-    function deleteSelected(){
-      if(!selectedId) return;
-      const l = letters.find(x=>x.id===selectedId);
-      const ok = confirm("Delete this letter from " + (l?.dateLabel || "that day") + "?");
-      if(!ok) return;
-
-      letters = letters.filter(x => x.id !== selectedId);
-      saveLetters();
-      selectedId = null;
-      deleteOneBtn.disabled = true;
-
-      openMeta.textContent = "Open a letter from the archive ✨";
-      openText.textContent = "—";
-      renderArchive();
-    }
-
-    // --- Export / Import ---
-    function exportLetters(){
-      const data = JSON.stringify({ version: 1, exportedAt: nowISO(), letters }, null, 2);
-      const blob = new Blob([data], {type:"application/json"});
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = "nightly-love-letters.json";
-      document.body.appendChild(a);
-      a.click();
-      a.remove();
-      URL.revokeObjectURL(url);
-    }
-
-    function importLetters(file){
-      const reader = new FileReader();
-      reader.onload = () => {
-        try{
-          const parsed = JSON.parse(String(reader.result || "{}"));
-          const incoming = Array.isArray(parsed) ? parsed : parsed.letters;
-          if(!Array.isArray(incoming)) throw new Error("bad");
-
-          const existing = new Set(letters.map(l=>l.id));
-          const cleaned = incoming
-            .filter(l => l && typeof l === "object" && l.text)
-            .map(l => ({
-              id: l.id || (crypto.randomUUID ? crypto.randomUUID() : String(Math.random()).slice(2)),
-              createdAt: l.createdAt || nowISO(),
-              dateLabel: l.dateLabel || formatDate(new Date()),
-              text: String(l.text || "")
-            }))
-            .filter(l => !existing.has(l.id));
-
-          letters = letters.concat(cleaned);
-          saveLetters();
-          renderArchive();
-          openMeta.textContent = "Imported ✨";
-        }catch{
-          openMeta.textContent = "Import failed (wrong file).";
-        }
-      };
-      reader.readAsText(file);
-    }
-
-    function wipeAll(){
-      const ok = confirm("Delete ALL saved letters on this device?");
-      if(!ok) return;
-      letters = [];
-      selectedId = null;
-      localStorage.removeItem(KEY);
-      renderArchive();
-      openMeta.textContent = "Open a letter from the archive ✨";
-      openText.textContent = "—";
-      deleteOneBtn.disabled = true;
-    }
-
-    // --- Hooks ---
-    saveBtn.addEventListener("click", saveTonight);
-    clearBtn.addEventListener("click", clearBox);
-    copyBtn.addEventListener("click", copyDraft);
-
-    exportBtn.addEventListener("click", exportLetters);
-    importFile.addEventListener("change", (e) => {
-      const f = e.target.files && e.target.files[0];
-      if(f) importLetters(f);
-      e.target.value = "";
-    });
-    wipeBtn.addEventListener("click", wipeAll);
-
-    searchInput.addEventListener("input", renderArchive);
-    deleteOneBtn.addEventListener("click", deleteSelected);
-  </script>
 </body>
 </html>
+
