@@ -27,7 +27,7 @@ body{
   justify-content:center;
   align-items:flex-start;
   padding:40px 12px;
-  overflow:hidden;
+  overflow-x:hidden; /* allow vertical scroll */
 
   background:
     radial-gradient(900px 700px at 20% 10%, rgba(47,123,255,0.18), transparent 60%),
@@ -35,7 +35,7 @@ body{
     linear-gradient(180deg, var(--bg0), var(--bg1));
 }
 
-/* Stars */
+/* Floating stars background */
 .stars{
   position:fixed;
   inset:0;
@@ -48,11 +48,50 @@ body{
   background-size: 240px 180px;
   animation: drift 120s linear infinite;
   opacity:.8;
+  z-index:0;
 }
 
 @keyframes drift{
   from{transform:translateY(0);}
   to{transform:translateY(-200px);}
+}
+
+/* Shooting stars */
+.shooting-star{
+  position:fixed;
+  top:-10px;
+  width:2px;
+  height:100px;
+  background:linear-gradient(white, rgba(255,255,255,0));
+  opacity:0;
+  transform:rotate(45deg);
+  animation:shoot 6s linear infinite;
+  z-index:0;
+}
+
+.shooting-star:nth-child(2){
+  left:20%;
+  animation-delay:2s;
+}
+.shooting-star:nth-child(3){
+  left:60%;
+  animation-delay:4s;
+}
+.shooting-star:nth-child(4){
+  left:80%;
+  animation-delay:1s;
+}
+
+@keyframes shoot{
+  0%{
+    opacity:0;
+    transform:translateY(0) translateX(0) rotate(45deg);
+  }
+  10%{opacity:1;}
+  100%{
+    opacity:0;
+    transform:translateY(600px) translateX(300px) rotate(45deg);
+  }
 }
 
 .box{
@@ -164,12 +203,22 @@ input{
   transform:translateY(0);
 }
 
+/* Responsive adjustments */
+@media (max-width:480px){
+  h1{font-size:34px;}
+  #letter{font-size:20px;}
+  input{font-size:18px;}
+}
+
 </style>
 </head>
 
 <body>
 
 <div class="stars"></div>
+<div class="shooting-star"></div>
+<div class="shooting-star"></div>
+<div class="shooting-star"></div>
 
 <div class="box">
   <h1>✉️🌙</h1>
@@ -194,10 +243,19 @@ input{
     <p>
       I don't think I'm super creative anymore, but here's my love letter. or e-loveletter.
     </p>
+
     <p>
-     So, I know we talked for an hour today, and I really enjoyed that. I wish we can have a farm of our own one day, with goats and sheeps and cows and no ponds cause you might put the
-      cow in the pond. What else, I think I am thinking out loud or typing out loud now, this is just a very complicated way to text huh.
-      
+      So, I know we talked for an hour today, and I really enjoyed that. I wish we can have a farm of our own one day, with goats and sheeps and cows and no ponds cause you might put the
+      cow in the pond. What else, I think I am thinking out loud or typing out loud now, this is just a very complicated way to text huh. Let us plan a trip someday, I hope I can see you again soon. 
+      Me daydreaming about you has increased.
+    </p>
+    <p>
+      I know you have been a lil busy or distracted lately. I don't know what's going on, but I hope you figure it out soon! You're a smart guy and I believe in you.
+      I know I am all "la vien rose" sometimes, uk, marraige n stuff. But I dont expect all that anytime soon. I was just , again, thinking out loud. Seems like everyone around me only talk about that.
+      I just wanna hangout with you as long as I can. You're cool to hangout with, I like your stories and crazy adventures. I want to be in your adventures. 
+    </p>
+    <p>
+      I apologize if I've been too much to handle lately, but I would like to be handled by you, if it makes any sense. So Aby, please come hangout with me so we can laugh at dumb shit again.
     </p>
 
     <p>
